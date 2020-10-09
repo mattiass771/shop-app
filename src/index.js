@@ -5,7 +5,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
-require("dotenv").config()
+require("dotenv").config();
 
 // USE MIDDLEWARE //
 app.use(cors());
@@ -29,14 +29,16 @@ mongoose.connect(
 const testRouter = require("./db/testDB");
 app.use("/test", testRouter);
 
-// // SHOW APP //
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static("geroproject/build"));
+app.get("/", (req, res) => res.send("Hello World"));
 
-//   app.get("*", (req, res) => {
-//     res.sendFile(path.resolve(__dirname, "client/public", "index.html"));
-//   });
-// }
+// ACCESS APP IN PRODUCTION //
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("geroproject/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client/public", "index.html"));
+  });
+}
 
 // RUN SERVER //
 const listener = app.listen(process.env.PORT || 5000, () => {
