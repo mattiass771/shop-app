@@ -7,9 +7,9 @@ import { SketchPicker } from "react-color";
 
 import { GiPalette } from "react-icons/gi";
 
-export default ({ setShowJumboColor, setJumboColor, jumboColor }) => {
-  const handleJumboColor = (color) => {
-    setJumboColor(color.hex);
+export default ({ setShowPageColor, setPageColor, pageColor }) => {
+  const handlePageColor = (color) => {
+    setPageColor(color.hex);
   };
   return (
     <OverlayTrigger
@@ -20,14 +20,14 @@ export default ({ setShowJumboColor, setJumboColor, jumboColor }) => {
           <Popover.Content>
             <SketchPicker
               disableAlpha
-              color={jumboColor}
-              onChangeComplete={handleJumboColor}
+              color={pageColor}
+              onChangeComplete={handlePageColor}
             />
           </Popover.Content>
         </Popover>
       }
     >
-      <Button size="sm" variant="light" onClick={() => setShowJumboColor(true)}>
+      <Button size="sm" variant="light" onClick={() => setShowPageColor(true)}>
         <GiPalette
           style={{ fontSize: "150%", marginBottom: "3px", marginTop: "2px" }}
         />
